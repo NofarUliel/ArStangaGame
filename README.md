@@ -4,6 +4,6 @@ This app afford game against AI bot or game online with other players using a mo
 Online game is achieved using a dedicated server that connects players regardless of location.
 
 Youtube videos:
-https://www.youtube.com/watch?v=BiAqDzZKHcY&list=PLeL7aH3Zgfer_Hx5n51mxywBcQRCmltNz
+https://www.youtube.com/watch?v=BYNLeMKKpgo&list=PLeL7aH3Zgfer_Hx5n51mxywBcQRCmltNz&index=1
 
 ![ar stanga](https://user-images.githubusercontent.com/38475764/90610777-99719a00-e20e-11ea-837a-8f82e1d41625.png)
