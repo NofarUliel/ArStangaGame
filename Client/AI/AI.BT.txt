@@ -1,0 +1,88 @@
+tree("Root")
+	parallel
+		repeat mute tree("MyTurn")
+		repeat mute tree("EnemyTurn")
+
+	
+tree("MyTurn")
+	while IsMyTurn
+		fallback
+			while IsAICloseToBall
+				tree("AiCloseBall")		
+			while not IsAICloseToBall
+				tree("AiNotCloseBall")
+				
+tree("EnemyTurn")
+	while not IsMyTurn
+		fallback
+			while IsBallCloseToMyGate
+				tree("GoalKepper")
+			while not IsBallCloseToMyGate
+				tree("BlockEnemy")
+
+tree("SeePlayer")
+	fallback
+		while IsEnemyCloseToMe
+			tree("KickToEnemy")
+		while not IsEnemyCloseToMe
+			tree("KickToGateArea")
+tree("BallNotBehindPlayer")
+	fallback
+		while SeePlayer
+			tree("SeePlayer")
+		while not SeePlayer
+			tree("Attack")
+
+tree("AiCloseBall")
+	sequence
+		LookAtTarget("ball")
+		fallback
+			while IsBallBehindPlayer
+				PlayerGoBehindBall
+			while not IsBallBehindPlayer
+				tree("BallNotBehindPlayer")
+
+tree("AiNotCloseBall")
+	sequence
+		LookAtTarget("ball")
+		GoToBall
+
+tree("BlockEnemy")
+	sequence
+		LookAtTarget("enemy")
+		PassBall
+		GoToEnemy
+		BlockEnemy
+		Wait(10)
+		
+		
+
+tree("GoalKepper")
+	sequence
+		fallback
+			while not IsPlayerCloseToHisGate
+				sequence
+					LookAtTarget("myGate")
+					GoToMyGate
+			while IsPlayerCloseToHisGate
+				sequence
+					LookAtTarget("enemyGate")
+					GateKeeper
+
+tree("Attack")
+	sequence
+		LookAtTarget("enemyGate")
+		KickToGate
+		SwitchTurn
+
+
+tree("KickToEnemy")
+	sequence
+		KickToEnemy
+		Wait(10)
+		SwitchTurn
+
+tree("KickToGateArea")
+	sequence
+		KickToGateArea
+		SwitchTurn
